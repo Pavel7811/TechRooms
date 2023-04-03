@@ -22,6 +22,7 @@ git clone https://github.com/Pavel7811/TechRooms.git
 3. Создайте и активируйте виртуальное окружение:
 
 ```bash
+cd TechRooms
 python -m venv venv
 venv\Scripts\activate
 ```
