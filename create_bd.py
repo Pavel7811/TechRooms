@@ -25,6 +25,7 @@ def create_tables(connection):
         installation_date TEXT,
         windows_build TEXT,
         windows_feature_experience TEXT,
+        image_path TEXT,
         FOREIGN KEY (room_id) REFERENCES rooms (id)
     );
     ''')
@@ -42,12 +43,12 @@ def insert_example_data(connection):
     # Добавляем пример оборудования
     cursor.execute("""
     INSERT INTO equipment (
-        room_id, device_name, full_device_name, processor, ram, system_type, windows_edition, windows_version, installation_date, windows_build, windows_feature_experience
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+        room_id, device_name, full_device_name, processor, ram, system_type, windows_edition, windows_version, installation_date, windows_build, windows_feature_experience, image_path
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     """, (
         room_id, '411-7', '411-7.localvib.ru', 'Intel(R) Core(TM) i5-3450 CPU @ 3.10GHz', '8,00 ГБ (доступно: 7,69 ГБ)',
         '64-разрядная операционная система, процессор x64', 'Windows 10 Pro', '21H2', '27.05.2022', '19044.2728',
-        '120.2212.4190.0'
+        '120.2212.4190.0', 'images/1.jpg'
     ))
 
     connection.commit()

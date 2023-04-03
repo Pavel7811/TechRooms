@@ -2,6 +2,8 @@ import sys
 import sqlite3
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
 from PyQt5 import uic
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 
 
 class EquipmentDatabaseApp(QMainWindow):
@@ -20,6 +22,11 @@ class EquipmentDatabaseApp(QMainWindow):
         result = self.connection.execute(query).fetchall()
         for room_id, room_name in result:
             self.rooms_list.addItem(f"{room_id}. {room_name}")
+
+    def display_equipment_image(self, image_path):
+        pixmap = QPixmap(image_path)
+        self.equipment_image.setPixmap(
+            pixmap.scaled(self.equipment_image.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
     def display_equipment(self, item):
         room_id = int(item.text().split('.')[0])
@@ -43,6 +50,8 @@ class EquipmentDatabaseApp(QMainWindow):
             <hr>
             """
         self.equipment_info.setHtml(equipment_html)
+        image_path = result[0][12]
+        self.display_equipment_image(image_path)
 
 
 if __name__ == "__main__":
