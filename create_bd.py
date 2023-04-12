@@ -4,31 +4,42 @@ import sqlite3
 def create_tables(connection):
     cursor = connection.cursor()
 
-    cursor.execute('''
-    CREATE TABLE rooms (
-        id INTEGER PRIMARY KEY,
-        name TEXT
-    );
-    ''')
+    # Проверяем существование таблиц
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='rooms';")
+    table_rooms = cursor.fetchone()
 
-    cursor.execute('''
-    CREATE TABLE equipment (
-        id INTEGER PRIMARY KEY,
-        room_id INTEGER,
-        device_name TEXT,
-        full_device_name TEXT,
-        processor TEXT,
-        ram TEXT,
-        system_type TEXT,
-        windows_edition TEXT,
-        windows_version TEXT,
-        installation_date TEXT,
-        windows_build TEXT,
-        windows_feature_experience TEXT,
-        image_path TEXT,
-        FOREIGN KEY (room_id) REFERENCES rooms (id)
-    );
-    ''')
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='equipment';")
+    table_equipment = cursor.fetchone()
+
+    # Создаем таблицу "rooms", если она не существует
+    if not table_rooms:
+        cursor.execute('''
+        CREATE TABLE rooms (
+            id INTEGER PRIMARY KEY,
+            name TEXT
+        );
+        ''')
+
+    # Создаем таблицу "equipment", если она не существует
+    if not table_equipment:
+        cursor.execute('''
+        CREATE TABLE equipment (
+            id INTEGER PRIMARY KEY,
+            room_id INTEGER,
+            device_name TEXT,
+            full_device_name TEXT,
+            processor TEXT,
+            ram TEXT,
+            system_type TEXT,
+            windows_edition TEXT,
+            windows_version TEXT,
+            installation_date TEXT,
+            windows_build TEXT,
+            windows_feature_experience TEXT,
+            image_path TEXT,
+            FOREIGN KEY (room_id) REFERENCES rooms (id)
+        );
+        ''')
 
     connection.commit()
 
@@ -37,7 +48,7 @@ def insert_example_data(connection):
     cursor = connection.cursor()
 
     # Добавляем пример аудитории
-    cursor.execute("INSERT INTO rooms (name) VALUES ('Аудитория 411');")
+    cursor.execute("INSERT INTO rooms (name) VALUES ('Аудитория 412');")
     room_id = cursor.lastrowid
 
     # Добавляем пример оборудования
