@@ -20,6 +20,7 @@ class EquipmentDatabaseApp(QMainWindow):
         self.rooms_list.itemClicked.connect(self.display_equipment)
         self.previous_button.clicked.connect(self.previous_computer)
         self.next_button.clicked.connect(self.next_computer)
+        self.equipment_image.setScaledContents(False)
 
     def refresh_rooms(self):
         self.rooms_list.clear()
@@ -30,8 +31,13 @@ class EquipmentDatabaseApp(QMainWindow):
 
     def display_equipment_image(self, image_path):
         pixmap = QPixmap(image_path)
-        self.equipment_image.setPixmap(
-            pixmap.scaled(self.equipment_image.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation))
+        scaled_pixmap = pixmap.scaled(
+            self.equipment_image.width(),
+            self.equipment_image.height(),
+            Qt.KeepAspectRatio,
+            Qt.SmoothTransformation
+        )
+        self.equipment_image.setPixmap(scaled_pixmap)
 
     def display_equipment(self, item):
         room_id = int(item.text().split('.')[0])

@@ -14,81 +14,60 @@
    <string>База данных аудиторий и технического оборудования</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListWidget" name="rooms_list">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>200</width>
-      <height>700</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="equipment_info">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>20</y>
-      <width>540</width>
-      <height>350</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="equipment_image">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>380</y>
-      <width>540</width>
-      <height>340</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="previous_button">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>730</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Назад</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="next_button">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>730</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Вперед</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="computer_count_label">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>730</y>
-      <width>120</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Компьютеры: 0/0</string>
-    </property>
-   </widget>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QListWidget" name="rooms_list"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QTextBrowser" name="equipment_info"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="equipment_image">
+        <property name="fixedSize">
+  <size>
+    <width>540</width>
+    <height>340</height>
+  </size>
+</property>
+
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="previous_button">
+          <property name="text">
+           <string>Назад</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="computer_count_label">
+          <property name="text">
+           <string>Компьютеры: 0/0</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="next_button">
+          <property name="text">
+           <string>Вперед</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
